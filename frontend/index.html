@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Event Connect Platform</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+  <h2>Event Connect Platform</h2>
+
+  <div style="display:flex; align-items:center; gap:15px;">
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+
+    <!-- 🌗 Dark / Light Toggle -->
+    <label class="theme-toggle">
+      <input type="checkbox" id="themeToggle">
+      <span class="slider"></span>
+    </label>
+  </div>
+</div>
+
+<!-- Main Container -->
+<div class="container">
+  <h2>Upcoming Events</h2>
+  <div id="myEvents" class="grid"></div>
+</div>
+
+<!-- Registration Modal -->
+<div id="regModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="script.js"></script>
+</body>
+</html>

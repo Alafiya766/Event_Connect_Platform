@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Organizer Dashboard</title>
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+  <h2>Organizer Dashboard</h2>
+
+  <div class="nav-actions">
+    <a href="create-event.html" class="nav-link">Create Event</a>
+    <button id="logoutBtn" class="nav-btn">Logout</button>
+
+    <!-- 🌗 Dark / Light Toggle -->
+    <label class="theme-toggle">
+      <input type="checkbox" id="themeToggle">
+      <span class="slider"></span>
+    </label>
+  </div>
+</div>
+
+<!-- Welcome Card -->
+<div class="container">
+  <div class="welcome-card">
+    <h3>Welcome, <span id="username"></span> 👋</h3>
+    <p>Email: <span id="email"></span></p>
+  </div>
+
+  <!-- Stats -->
+  <h2>Stats</h2>
+  <div class="grid" id="statsCards"></div>
+
+  <!-- Chart -->
+  <div class="chart-card">
+    <h3>Event Registrations</h3>
+    <canvas id="regChart" height="120"></canvas>
+  </div>
+
+  <!-- Events -->
+  <h2>My Events</h2>
+  <div class="grid" id="myEvents"></div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
