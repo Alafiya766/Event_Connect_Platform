@@ -93,6 +93,7 @@ http://127.0.0.1:5500
 <hr>
 4️⃣ Database Setup (MySQL)
 
+
 -Open MySQL Workbench or MySQL CLI
 
 
@@ -108,9 +109,6 @@ payments tables
 <hr>
 5️⃣ Razorpay Integration
 
-
-
-
 --Supports Test Mode
 
 --Payments stored in payments table
@@ -118,9 +116,6 @@ payments tables
 --Order creation handled in backend
 <hr>
 6️⃣ Test the Application
-
-
-
 
 *USER FLOW
 --Register as User
