@@ -8,8 +8,9 @@ Event Connect is a full-stack event management and booking platform that allows 
 - **Responsive Material UI-inspired Frontend**
 - **Organizer Dashboard** with stats & charts
 
-
+<hr>
 🚀 Features
+
 👤 User
 
 -User registration & login
@@ -17,6 +18,7 @@ Event Connect is a full-stack event management and booking platform that allows 
 -Event registration
 -Secure online payment (Razorpay)
 -View registered events
+-Receive email
 
 🧑‍💼 Organizer
 
@@ -26,8 +28,9 @@ Event Connect is a full-stack event management and booking platform that allows 
 -Delete events
 -Track event registrations
 -Dashboard with event statistics
+-Receive email when user registered 
 
-
+<hr>
 ## Tech Stack
 
 - **Frontend:** HTML, CSS, JS
@@ -36,35 +39,46 @@ Event Connect is a full-stack event management and booking platform that allows 
 - **Payments:** Razorpay  
 - **Email:** Nodemailer  
 
-
+<hr>
 ⚙️ Installation & Setup
 
 1️⃣ Clone the Repository
-git clone https://github.com/Alafiya766/Event_Connect_Platform.git
-cd EventConnect-Platform
 
+    git clone https://github.com/Alafiya766/Event_Connect_Platform.git
+
+    cd EventConnect-Platform
+<hr>
 2️⃣ Backend Setup (Node.js + Express)
-cd backend
-npm install express mysql2 dotenv cors bcrypt jsonwebtoken nodemailer razorpay body-parser
+
+    cd backend
+
+    npm install express mysql2 dotenv cors bcrypt jsonwebtoken nodemailer razorpay body-parser
 
 **Create environment file:
 .env
 
 DB_HOST=localhost
+
 DB_USER=
+
 DB_PASSWORD=
+
 DB_NAME=
 
 JWT_SECRET=
 
 RAZORPAY_KEY=YOUR_RAZORPAY_KEY
+
 RAZORPAY_SECRET=YOUR_RAZORPAY_SECRET
 
 EMAIL_USER = CentralizedEmailAccount@gmail.com
+
 EMAIL_PASS = AppPassword
 
 **Start Server:
-npm start
+
+    npm start
+<hr>
 
 3️⃣ Frontend Setup
 ---VS Code Live Server (Recommended)
@@ -76,10 +90,14 @@ npm start
 Frontend runs at:
 http://127.0.0.1:5500
 
+<hr>
 4️⃣ Database Setup (MySQL)
 
 -Open MySQL Workbench or MySQL CLI
+
+
 -Create the database and tables:
+
 -SOURCE database/event_system.sql;
 
 ✔ This will create:
@@ -87,13 +105,22 @@ users
 events
 registrations
 payments tables
-
+<hr>
 5️⃣ Razorpay Integration
---Supports Test Mode and Live Mode
---Payments stored in payments table
---Order creation handled in backend
 
-5️⃣Test the Application
+
+
+
+--Supports Test Mode
+
+--Payments stored in payments table
+
+--Order creation handled in backend
+<hr>
+6️⃣ Test the Application
+
+
+
 
 *USER FLOW
 --Register as User
