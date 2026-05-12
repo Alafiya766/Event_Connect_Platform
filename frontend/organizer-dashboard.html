@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organizer Dashboard – EventConnect</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <style>
+    /* ── Modern chart grid ── */
+    .charts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .charts-grid .chart-card:last-child {
+      grid-column: 1 / -1;
+    }
+    @media (max-width: 700px) {
+      .charts-grid { grid-template-columns: 1fr; }
+      .charts-grid .chart-card:last-child { grid-column: auto; }
+    }
+    .chart-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.6rem;
+    }
+    .chart-card h3 {
+      font-size: .92rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: .45rem;
+    }
+    .chart-wrap { position: relative; height: 220px; }
+    .chart-wrap-lg { position: relative; height: 120px; }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <a class="navbar-brand">
+    <h2>EventConnect Platform</h2>
+  </a>
+  <div class="nav-actions">
+    <a href="create-event.html" class="nav-link btn" style="background:rgba(255,255,255,.18);color:#fff;border:1px solid rgba(255,255,255,.3)">
+      <i class="fa-solid fa-plus"></i> New Event
+    </a>
+    <div class="nav-user-chip">
+      <i class="fa-solid fa-circle-user"></i>
+      <span id="navUsername"></span>
+    </div>
+    <button class="nav-btn" id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+  </div>
+</nav>
+
+<!-- Floating Theme Toggle -->
+<label class="theme-fab" title="Toggle dark mode">
+  <input type="checkbox" id="themeToggle">
+  <span class="theme-fab-icon">🌙</span>
+</label>
+
+<div class="container">
+  <!-- Welcome -->
+  <div class="welcome-card">
+    <div>
+      <h3>Organizer Hub – <span id="username"></span> </h3>
+      <p><i class="fa-solid fa-envelope"></i> &nbsp;<span id="email"></span></p>
+      <p style="margin-top:.4rem;opacity:.75;font-size:.85rem"><i class="fa-solid fa-wand-magic-sparkles"></i> &nbsp;Manage your events and track performance</p>
+    </div>
+    <div class="welcome-avatar"><i class="fa-solid fa-headset"></i></div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-grid" id="statsCards">
+    <div class="stat-card">
+      <div class="stat-icon indigo"><i class="fa-solid fa-calendar-days" style="color:#4f46e5"></i></div>
+      <div class="stat-info"><p>Total Events</p><h3 id="totalEvents">—</h3></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon green"><i class="fa-solid fa-users" style="color:#10b981"></i></div>
+      <div class="stat-info"><p>Confirmed Registrations</p><h3 id="totalRegistrations">—</h3></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon amber"><i class="fa-solid fa-indian-rupee-sign" style="color:#f59e0b"></i></div>
+      <div class="stat-info"><p>Total Revenue (Paid)</p><h3 id="totalPayments">—</h3></div>
+    </div>
+  </div>
+
+  <!-- Charts Grid -->
+  <div class="charts-grid">
+    <!-- Revenue per event -->
+    <div class="chart-card">
+      <h3><i class="fa-solid fa-chart-column" style="color:#4f46e5"></i> Revenue per Event (₹)</h3>
+      <div class="chart-wrap"><canvas id="revenueChart"></canvas></div>
+    </div>
+
+    <!-- Confirmed Registrations per event -->
+    <div class="chart-card">
+      <h3><i class="fa-solid fa-users" style="color:#10b981"></i> Confirmed Registrations</h3>
+      <div class="chart-wrap"><canvas id="regChart"></canvas></div>
+    </div>
+
+    <!-- Event Performance Donut -->
+    <div class="chart-card">
+      <h3><i class="fa-solid fa-chart-pie" style="color:#f59e0b"></i> Event Performance Overview (Revenue Share)</h3>
+      <div class="chart-wrap-lg"><canvas id="perfChart"></canvas></div>
+    </div>
+  </div>
+
+  <!-- Events Map -->
+  <div class="map-card">
+    <div class="map-card-header">
+      <span class="map-icon"><i class="fa-solid fa-map-location-dot"></i></span>
+      <h3>My Events – Location Map</h3>
+    </div>
+    <div id="mapContainer"></div>
+    <div class="map-controls">
+      <p><i class="fa-solid fa-circle-info" style="color:var(--primary)"></i> &nbsp;Your event locations are pinned on the map. Click a marker for details.</p>
+    </div>
+  </div>
+
+  <!-- My Events -->
+  <div class="section-heading">
+    <div class="section-icon"><i class="fa-solid fa-calendar-check"></i></div>
+    <h2>My Events</h2>
+    <a href="create-event.html" class="btn btn-primary btn-sm" style="margin-left:auto">
+      <i class="fa-solid fa-plus"></i> Add New
+    </a>
+  </div>
+  <div id="myEvents" class="grid"><div class="spinner"></div></div>
+</div>
+
+<!-- Map Modal -->
+<div class="modal" id="mapModal">
+  <div class="modal-content" style="max-width:540px">
+    <div class="modal-header">
+      <h3><i class="fa-solid fa-map-location-dot" style="color:var(--primary)"></i> &nbsp;<span id="mapModalTitle">Event Location</span></h3>
+      <button class="modal-close" onclick="closeMapModal()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div id="mapModalBody" style="margin-bottom:1.25rem"></div>
+    <div style="display:flex;gap:.75rem;flex-wrap:wrap">
+      <button class="btn btn-outline" onclick="closeMapModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast-container"></div>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EventConnect – Discover Amazing Events</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <a class="navbar-brand">
+    <h2>EventConnect Platform</h2>
+  </a>
+  <div class="nav-actions">
+    <a href="login.html"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+    <a href="register.html" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,.5)"><i class="fa-solid fa-user-plus"></i> Register</a>
+  </div>
+</nav>
+
+<!-- Floating Theme Toggle -->
+<label class="theme-fab" title="Toggle dark mode">
+  <input type="checkbox" id="themeToggle">
+  <span class="theme-fab-icon">🌙</span>
+</label>
+
+<!-- Hero -->
+<div style="background:linear-gradient(135deg,#0f172a 0%,#5b21b6 45%,#6a5f83 100%);color:#fff;padding:5rem 2rem 4rem;text-align:center;">    <div style="background:rgba(255,255,255,.15);display:inline-flex;align-items:center;gap:.5rem;padding:.4rem 1rem;border-radius:99px;font-size:.82rem;font-weight:600;margin-bottom:1.5rem;border:1px solid rgba(255,255,255,.2)">
+      <i class="fa-solid fa-bolt"></i> Discover · Register · Experience
+    </div>
+    <h1 style="font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.2;margin-bottom:1rem;letter-spacing:-1px">
+      Find & Attend <br><span style="color:#fde68a">Incredible Events</span> Near You
+    </h1>
+    <p style="opacity:.85;font-size:1.05rem;max-width:520px;margin:0 auto 2rem">
+      Browse, register and pay — all in one place. From workshops to concerts, find events that matter to you.
+    </p>
+    <div style="display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap">
+      <a href="register.html" class="btn btn-lg" style="background:#fff;color:var(--primary);font-weight:700">
+        <i class="fa-solid fa-rocket"></i> Get Started
+      </a>
+      <a href="#events" class="btn btn-lg" style="background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3)">
+        <i class="fa-solid fa-calendar-days"></i> Browse Events
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Events Section -->
+<div class="container" id="events">
+  <div class="section-heading">
+    <div class="section-icon"><i class="fa-solid fa-fire-flame-curved"></i></div>
+    <h2>Upcoming Events</h2>
+  </div>
+
+  <!-- Search -->
+  <div class="search-bar">
+    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+    <input type="text" id="searchInput" class="no-icon" placeholder="Search events by name or location…" oninput="filterEvents()" style="padding-left:2.8rem">
+  </div>
+
+  <div id="myEvents" class="grid">
+    <div class="spinner"></div>
+  </div>
+</div>
+
+<!-- Map Modal -->
+<div class="modal" id="mapModal">
+  <div class="modal-content" style="max-width:640px;">
+    <div class="modal-header">
+      <h3><i class="fa-solid fa-map-location-dot" style="color:var(--primary)"></i> &nbsp;<span id="mapModalTitle">Event Location</span></h3>
+      <button class="modal-close" onclick="closeMapModal()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div id="mapModalBody">
+      <!-- Filled dynamically by openLeafletEventModal() in script.js -->
+    </div>
+    <div style="margin-top:.75rem;display:flex;gap:.75rem;align-items:center;flex-wrap:wrap">
+      <button class="btn btn-primary btn-sm" id="mapRegisterBtn">
+        <i class="fa-solid fa-ticket"></i> Register Now
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast Container -->
+<div id="toast-container"></div>
+
+<!-- Leaflet loaded on demand in script.js -->
+<script src="script.js"></script>
+</body>
+</html>

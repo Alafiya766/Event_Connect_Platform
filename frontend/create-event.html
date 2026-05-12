@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Event – EventConnect</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <a class="navbar-brand">
+    <h2>EventConnect Platform</h2>
+  </a>
+  <div class="nav-actions">
+    <a href="organizer-dashboard.html" class="navbar a"><i class="fa-solid fa-arrow-left"></i> Dashboard</a>
+    
+  </div>
+</nav>
+
+<!-- Floating Theme Toggle -->
+<label class="theme-fab" title="Toggle dark mode">
+  <input type="checkbox" id="themeToggle">
+  <span class="theme-fab-icon">🌙</span>
+</label>
+
+<div class="form-page">
+  <div class="form-box" style="max-width:540px">
+    <div class="form-logo">
+      <div class="logo-icon"><i class="fa-solid fa-calendar-plus"></i></div>
+      <h2>Create New Event</h2>
+      <p>Fill in the details to publish your event</p>
+    </div>
+
+    <div class="form-group">
+      <label>Event Title</label>
+      <div class="input-wrap">
+        <span class="input-icon"><i class="fa-solid fa-heading"></i></span>
+        <input id="title" type="text" placeholder="e.g. Tech Summit 2025" required>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Description</label>
+      <div class="input-wrap">
+        <span class="input-icon" style="top:1.1rem;transform:none"><i class="fa-solid fa-align-left"></i></span>
+        <textarea id="description" placeholder="Describe your event in detail…" style="padding-left:2.5rem"></textarea>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.85rem">
+      <div class="form-group">
+        <label>Event Date</label>
+        <div class="input-wrap">
+          <span class="input-icon"><i class="fa-solid fa-calendar"></i></span>
+          <input id="event-date" type="date" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Event Time</label>
+        <div class="input-wrap">
+          <span class="input-icon"><i class="fa-solid fa-clock"></i></span>
+          <input id="event-time" type="time">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Venue / Location</label>
+      <div class="input-wrap">
+        <span class="input-icon"><i class="fa-solid fa-location-dot"></i></span>
+        <input id="location" type="text" placeholder="e.g. Chennai Trade Centre, Chennai" required>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.85rem">
+      <div class="form-group">
+        <label>Ticket Price (₹)</label>
+        <div class="input-wrap">
+          <span class="input-icon"><i class="fa-solid fa-indian-rupee-sign"></i></span>
+          <input id="price" type="number" min="0" placeholder="0 for free" required>
+        </div>
+      </div>
+      
+
+    <div class="form-group">
+      <label>Max Capacity</label>
+      <div class="input-wrap">
+        <span class="input-icon"><i class="fa-solid fa-users"></i></span>
+        <input id="capacity" type="number" min="1" placeholder="Leave blank for unlimited">
+      </div>
+    </div>
+
+    <button class="btn btn-primary btn-full btn-lg" onclick="addCreateEvent()">
+      <i class="fa-solid fa-paper-plane"></i> Publish Event
+    </button>
+
+    <div class="form-footer" style="margin-top:.85rem">
+      <a href="organizer-dashboard.html"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</a>
+    </div>
+  </div>
+</div>
+
+<div id="toast-container"></div>
+<script src="script.js"></script>
+</body>
+</html>
